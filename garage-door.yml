@@ -32,7 +32,7 @@ output:
     id: LED
 
 binary_sensor:
-  # East Garage Door
+  # North Garage Door
   - platform: gpio
     pin:
       number: 2
@@ -43,8 +43,8 @@ binary_sensor:
         open_drain: false
         pulldown: false
       inverted: false
-    name: East Garage Door
-    id: east_garage_door
+    name: North Garage Door
+    id: north_garage_door
     device_class: garage_door
     filters:
       - delayed_on: 10ms
@@ -55,14 +55,14 @@ binary_sensor:
         - if:
             condition:
               or:
-                - binary_sensor.is_on: east_garage_door
-                - binary_sensor.is_on: west_garage_door
+                - binary_sensor.is_on: north_garage_door
+                - binary_sensor.is_on: south_garage_door
             then:
               - output.turn_on: LED
             else:
               - output.turn_off: LED
 
-  # West Garage Door
+  # South Garage Door
   - platform: gpio
     pin:
       number: 3
@@ -73,8 +73,8 @@ binary_sensor:
         open_drain: false
         pulldown: false
       inverted: false
-    name: West Garage Door
-    id: west_garage_door
+    name: South Garage Door
+    id: south_garage_door
     device_class: garage_door
     filters:
       - delayed_on: 10ms
@@ -85,8 +85,8 @@ binary_sensor:
         - if:
             condition:
               or:
-                - binary_sensor.is_on: east_garage_door
-                - binary_sensor.is_on: west_garage_door
+                - binary_sensor.is_on: north_garage_door
+                - binary_sensor.is_on: south_garage_door
             then:
               - output.turn_on: LED
             else:
